@@ -1,88 +1,33 @@
-class node:
-    def __init__(self, pid, name, pr):
-        self.patient_id = pid
-        self.name = name
-        self.priority = pr
-        self.next = None
+ch = input("Enter a character: ")
 
-class PriorityQueue:
-    def __init__(self):
-        self.front = None
-        self.rear = None
+if ch >= 'a' and ch <= 'z':
+    print("Lowercase letter")
+elif ch >= 'A' and ch <= 'Z':
+    print("Uppercase letter")
+elif ch >= '0' and ch <= '9':
+    print("Digit")
+else:
+    print("Special character")
 
+bill = float(input("Enter bill amount: "))
 
-    def enqueue(self, new_node):
-        if self.front is None:
-            self.front = self.rear = new_node
-            return
+if bill > 1000:
+    discount = bill * 0.20
+elif bill > 500:
+    discount = bill * 0.10
+else:
+    discount = 0
 
-        if self.front.priority > new_node.priority:
-            new_node.next = self.front
-            self.front = new_node   
-            return
-        else:
-            temp = self.front
-            while temp.next:
-                if new_node.priority < temp.next.priority:
-                    break
-                else:
-                    temp = temp.next
+print("Discount:", discount)
+print("Final amount:", bill - discount)
 
-            new_node.next = temp.next
-            temp.next = new_node
+a = int(input("Enter side a: "))
+b = int(input("Enter side b: "))
+c = int(input("Enter side c: "))
 
-            if new_node.next is None:
-                self.rear = new_node
-
-    def display_next(self):
-        if self.front is None:
-            print("No patients waiting")
-            return
-
-        print("Next patient to be treated: ")
-        print("Patient ID: ",self.front.patient_id)
-        print("Patient Name: ",self.front.name)
-        print("Priority: ",self.front.priority)
-
-    def dequeue(self):
-        if self.front is None:
-            print("No patients waiting")
-            return
-
-        temp = self.front
-        print("Patient treated: ",temp.name)
-        self.front = self.front.next
-
-        if self.front is None:
-            self.rear = None
-
-    def display_all(self):
-        if self.front is None:
-            print("No patients waiting")
-            return
-
-        temp = self.front
-        print("Patients waiting: ")
-
-        while temp:
-            print("Patient ID: ",temp.patient_id)
-            print("Patient Name: ",temp.name)
-            print("Priority: ",temp.priority)
-            temp = temp.next
-
-
-
-pq = PriorityQueue()
-pq.enqueue(node(1, "Aayush", 2))
-pq.enqueue(node(2, "Rohan", 3))
-pq.enqueue(node(3, "Prasad", 1))
-pq.enqueue(node(4, "Shivam", 2))
-pq.enqueue(node(5, "Rudraksh", 3))
-
-pq.display_all()
-
-pq.display_next()
-
-pq.dequeue()
-
-pq.display_all()
+if a == b == c:
+    print("Equilateral triangle")
+elif a == b or b == c or a == c:
+    print("Isosceles triangle")
+else:
+    print("Scalene triangle")

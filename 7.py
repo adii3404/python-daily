@@ -1,89 +1,31 @@
-class Node:
-    def __init__(self, data, next=None):
-        self.data = data
-        self.next = next
+username = input("Enter username: ")
+password = input("Enter password: ")
 
-
-class Queue:
-    def __init__(self):
-        self.front = None
-        self.rear = None
-
-    # 1. Enqueue
-    def enqueue(self, data):
-        temp = Node(data)
-        if self.rear is None:
-            self.front = self.rear = temp
-        else:
-            self.rear.next = temp
-            self.rear = temp
-
-    # 2. Dequeue
-    def dequeue(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            temp = self.front
-            print("Dequeued Element:", temp.data)
-            self.front = self.front.next
-            if self.front is None:
-                self.rear = None
-
-    # 3. Display
-    def display(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            print("Queue Contains...")
-            temp = self.front
-            while temp:
-                print(temp.data, end=" -> ")
-                temp = temp.next
-            print("None")
-
-    # 4. Reverse the queue using stack
-    def reverse_queue(self):
-        stack = []
-        temp = self.front
-        while temp:
-            stack.append(temp.data)
-            temp = temp.next
-        self.front = self.rear = None
-        while stack:
-            self.enqueue(stack.pop())
-
-    # 5. Merge two queues into one
-    def merge_queue(self, q2):
-        temp = q2.front
-        while temp:
-            self.enqueue(temp.data)
-            temp = temp.next
-
-    # 6. Check if two queues are identical
-    def identical(self, q2):
-        temp1 = self.front
-        temp2 = q2.front
-        while temp1 and temp2:
-            if temp1.data != temp2.data:
-                return False
-            temp1 = temp1.next
-            temp2 = temp2.next
-        return temp1 is None and temp2 is None
-
-
-# ==========================================
-# Execution / Test Code for Question 6
-# ==========================================
-q1 = Queue()
-q1.enqueue(10)
-q1.enqueue(20)
-
-q2 = Queue()
-q2.enqueue(10)
-q2.enqueue(30)
-
-print("Check Identical Queues:")
-if q1.identical(q2):
-    print("Queues are Identical")
+if username == "admin" and password == "1234":
+    print("Login successful")
 else:
-    print("Queues are Not Identical")
+    print("Invalid credentials")
+
+day = input("Enter day: ")
+
+if day == "Saturday" or day == "Sunday":
+    print("Weekend")
+else:
+    print("Weekday")
+
+num = int(input("Enter a number: "))
+
+if not num % 2 == 0:
+    print("Odd number")
+else:
+    print("Even number")
+
+age = int(input("Enter age: "))
+has_license = input("Do you have a license (yes/no): ")
+
+if age >= 18 and has_license == "yes":
+    print("You can drive")
+elif age >= 18 and has_license == "no":
+    print("Get a license first")
+else:
+    print("You are too young to drive")

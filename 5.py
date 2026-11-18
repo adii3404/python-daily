@@ -1,68 +1,28 @@
-class Node:
-    def __init__(self, data, next=None):
-        self.data = data
-        self.next = next
+age = int(input("Enter your age: "))
 
+if age >= 18:
+    print("You can vote")
+else:
+    print("You cannot vote")
 
-class Queue:
-    def __init__(self):
-        self.front = None
-        self.rear = None
+num = int(input("Enter a number: "))
 
-    # 1. Enqueue
-    def enqueue(self, data):
-        temp = Node(data)
-        if self.rear is None:
-            self.front = self.rear = temp
-        else:
-            self.rear.next = temp
-            self.rear = temp
+if num > 0:
+    print("Positive number")
+elif num < 0:
+    print("Negative number")
+else:
+    print("Zero")
 
-    # 2. Dequeue
-    def dequeue(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            temp = self.front
-            print("Dequeued Element:", temp.data)
-            self.front = self.front.next
-            if self.front is None:
-                self.rear = None
+marks = int(input("Enter your marks: "))
 
-    # 3. Display
-    def display(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            print("Queue Contains...")
-            temp = self.front
-            while temp:
-                print(temp.data, end=" -> ")
-                temp = temp.next
-            print("None")
-
-    # 4. Reverse Queue
-    def reverse_queue(self):
-        stack = []
-        temp = self.front
-        while temp:
-            stack.append(temp.data)
-            temp = temp.next
-        self.front = self.rear = None
-        while stack:
-            self.enqueue(stack.pop())
-
-
-# Usage Example
-q1 = Queue()
-q1.enqueue(10)
-q1.enqueue(20)
-q1.enqueue(30)
-q1.enqueue(40)
-
-print("Original Queue:")
-q1.display()
-
-print("\nAfter Reversing Queue:")
-q1.reverse_queue()
-q1.display()
+if marks >= 90:
+    print("Grade A")
+elif marks >= 80:
+    print("Grade B")
+elif marks >= 70:
+    print("Grade C")
+elif marks >= 60:
+    print("Grade D")
+else:
+    print("Fail")

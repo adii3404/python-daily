@@ -1,82 +1,30 @@
-class Node:
-    def __init__(self, data, next=None):
-        self.data = data
-        self.next = next
+num = int(input("Enter a number: "))
 
+if num % 2 == 0:
+    print("Even number")
+else:
+    print("Odd number")
 
-class Queue:
-    def __init__(self):
-        self.front = None
-        self.rear = None
+a = int(input("Enter first number: "))
+b = int(input("Enter second number: "))
+c = int(input("Enter third number: "))
 
-    # 1. Enqueue
-    def enqueue(self, data):
-        temp = Node(data)
-        if self.rear is None:
-            self.front = self.rear = temp
+if a >= b and a >= c:
+    print("Largest:", a)
+elif b >= a and b >= c:
+    print("Largest:", b)
+else:
+    print("Largest:", c)
+
+year = int(input("Enter a year: "))
+
+if year % 4 == 0:
+    if year % 100 == 0:
+        if year % 400 == 0:
+            print("Leap year")
         else:
-            self.rear.next = temp
-            self.rear = temp
-
-    # 2. Dequeue
-    def dequeue(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            temp = self.front
-            print("Dequeued Element:", temp.data)
-            self.front = self.front.next
-            if self.front is None:
-                self.rear = None
-
-    # 3. Display
-    def display(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            print("Queue Contains...")
-            temp = self.front
-            while temp:
-                print(temp.data, end=" -> ")
-                temp = temp.next
-            print("None")
-
-    # 4. Reverse Queue
-    def reverse_queue(self):
-        stack = []
-        temp = self.front
-        while temp:
-            stack.append(temp.data)
-            temp = temp.next
-        self.front = self.rear = None
-        while stack:
-            self.enqueue(stack.pop())
-
-    # 5. Merge Queue
-    def merge_queue(self, q2):
-        temp = q2.front
-        while temp:
-            self.enqueue(temp.data)
-            temp = temp.next
-
-
-# Usage Example
-q1 = Queue()
-q1.enqueue(10)
-q1.enqueue(20)
-
-q2 = Queue()
-q2.enqueue(30)
-q2.enqueue(40)
-
-print("Queue 1 before merge:")
-q1.display()
-
-print("Queue 2:")
-q2.display()
-
-# Merge q2 into q1
-q1.merge_queue(q2)
-
-print("\nQueue 1 after merging q2 into q1:")
-q1.display()
+            print("Not a leap year")
+    else:
+        print("Leap year")
+else:
+    print("Not a leap year")
