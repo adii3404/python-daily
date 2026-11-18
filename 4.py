@@ -1,51 +1,26 @@
-class Node:
-    def __init__(self, data, next=None):
-        self.data = data
-        self.next = next
+x = 10
+print(type(x))
+print(float(x))
 
+y = 3.14
+print(type(y))
+print(int(y))
 
-class Queue:
-    def __init__(self):
-        self.front = None
-        self.rear = None
+z = "100"
+print(type(z))
+print(int(z))
+print(float(z))
 
-    # 1. Enqueue
-    def enqueue(self, data):
-        temp = Node(data)
-        if self.rear is None:
-            self.front = self.rear = temp
-        else:
-            self.rear.next = temp
-            self.rear = temp
+a = 0
+b = 1
+c = ""
+d = "hello"
+print(bool(a))
+print(bool(b))
+print(bool(c))
+print(bool(d))
 
-    # 2. Dequeue
-    def dequeue(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            temp = self.front
-            print("Dequeued Element:", temp.data)
-            self.front = self.front.next
-            if self.front is None:
-                self.rear = None
-
-    # 3. Display
-    def display(self):
-        if self.front is None:
-            print("Queue is Empty")
-        else:
-            print("Queue Contains...")
-            temp = self.front
-            while temp:
-                print(temp.data, end=" -> ")
-                temp = temp.next
-            print("None")
-
-
-# Usage Example
-q1 = Queue()
-q1.enqueue(10)
-q1.enqueue(20)
-q1.enqueue(30)
-q1.enqueue(40)
-q1.display()
+num = int(input("Enter a number: "))
+print("String:", str(num))
+print("Float:", float(num))
+print("Boolean:", bool(num))
