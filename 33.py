@@ -2,30 +2,29 @@ import math
 import random
 import datetime
 
-print("Square root of 25:", math.isqrt(25))
-print("Ceil of 4.2:", math.ceil(4.2))
-print("Floor of 4.8:", math.floor(4.8))
-print("GCD of 48 and 18:", math.gcd(48, 18))
-print("Factorial of 6:", math.factorial(6))
+points = [(0, 0), (3, 4), (6, 8)]
+for p in points:
+    distance = math.hypot(p[0], p[1])
+    print("Distance of", p, "from origin:", distance)
 
 print()
 
-print("Random integer (1 to 10):", random.randint(1, 10))
-items = ["apple", "banana", "orange", "mango"]
-print("Random choice:", random.choice(items))
+options = ["Rock", "Paper", "Scissors"]
+cpu_choice = random.choice(options)
+print("CPU move:", cpu_choice)
 
-cards = [1, 2, 3, 4, 5]
-random.shuffle(cards)
-print("Shuffled:", cards)
+sample_pool = list(range(10, 100, 10))
+sample_pick = random.sample(sample_pool, 3)
+print("Random sample of 3 from pool:", sample_pick)
 
 print()
 
-now = datetime.datetime.now()
-print("Current date and time:", now.strftime("%Y-%m-%d %H:%M:%S"))
-print("Current year:", now.year)
-print("Current day:", now.strftime("%A"))
+current_time = datetime.datetime.now()
+print("Formatted now:", current_time.strftime("%d/%m/%Y, %H:%M"))
 
-custom_date = datetime.date(2026, 1, 1)
-today = datetime.date.today()
-diff = today - custom_date
-print("Days since 2026-01-01:", diff.days)
+ten_days_later = current_time + datetime.timedelta(days=10)
+print("Date after 10 days:", ten_days_later.strftime("%Y-%m-%d"))
+
+birthday = datetime.date(2004, 8, 15)
+age_days = (datetime.date.today() - birthday).days
+print("Days since 2004-08-15:", age_days)
