@@ -1,37 +1,23 @@
-nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-
-squares = [x * x for x in nums]
-print("Squares:", squares)
-
-evens = [x for x in nums if x % 2 == 0]
-print("Evens:", evens)
-
-odds = [x for x in nums if x % 2 != 0]
-print("Odds:", odds)
-
-print()
-
-words = ["hello", "world", "python", "code"]
-upper = [w.upper() for w in words]
-print("Uppercase:", upper)
-
-lengths = [len(w) for w in words]
-print("Lengths:", lengths)
-
-print()
-
 matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-flat = [num for row in matrix for num in row]
-print("Flattened:", flat)
+transposed = [[row[i] for row in matrix] for i in range(len(matrix[0]))]
+print("Original:")
+for r in matrix:
+    print(r)
+print("Transposed:")
+for r in transposed:
+    print(r)
 
 print()
 
-pairs = [(x, y) for x in range(1, 4) for y in range(1, 4) if x != y]
-print("Pairs:", pairs)
+names = ["rahul", "amit", "sneha", "pooja"]
+marks = [85, 92, 78, 95]
+passed_students = {name.title(): score for name, score in zip(names, marks) if score >= 80}
+print("Passed students:", passed_students)
 
 print()
 
-sentence = input("Enter a sentence: ")
-vowels = [ch for ch in sentence if ch.lower() in "aeiou"]
-print("Vowels:", vowels)
-print("Count:", len(vowels))
+divisible = [x for x in range(1, 101) if x % 3 == 0 and x % 5 == 0]
+print("Divisible by 3 and 5:", divisible)
+
+vowels = {char.lower() for char in "Programming in Python" if char.lower() in "aeiou"}
+print("Unique vowels found:", vowels)
