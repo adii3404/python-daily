@@ -1,50 +1,45 @@
-def greet(func):
-    def wrapper(name):
-        print("Hello", name)
-        func(name)
-        print("Have a nice day")
-    return wrapper
-
-@greet
-def say_name(name):
-    print("Your name is", name)
-
-say_name("Aditya")
-
-print()
-
-def repeat(times):
-    def decorator(func):
-        def wrapper(*args):
-            for i in range(times):
-                func(*args)
-        return wrapper
-    return decorator
-
-@repeat(3)
-def hello(name):
-    print("Hi", name)
-
-hello("Rohan")
-
-print()
-
-import time
-
-def timer(func):
-    def wrapper(*args):
-        start = time.time()
-        result = func(*args)
-        end = time.time()
-        print("Time taken:", round(end - start, 4), "seconds")
+def log_activity(func):
+    def wrapper(*args, **kwargs):
+        print("Calling function:", func.__name__)
+        result = func(*args, **kwargs)
+        print("Function", func.__name__, "finished execution")
         return result
     return wrapper
 
-@timer
-def slow_add(a, b):
-    total = 0
-    for i in range(1000000):
-        total = total + 1
-    return a + b
+@log_activity
+def multiply(a, b):
+    print("Computing product")
+    return a * b
 
-print("Result:", slow_add(10, 20))
+print("Result:", multiply(6, 7))
+
+print()
+
+def enforce_positive(func):
+    def wrapper(n):
+        if n < 0:
+            print("Negative number not allowed")
+            return 0
+        return func(n)
+    return wrapper
+
+@enforce_positive
+def print_root(n):
+    return n ** 0.5
+
+print("Square root:", print_root(16))
+print("Square root of negative:", print_root(-9))
+
+print()
+
+def debug_args(func):
+    def wrapper(*args):
+        print("Arguments passed:", args)
+        return func(*args)
+    return wrapper
+
+@debug_args
+def full_name(first, last):
+    return first + " " + last
+
+print("Full name:", full_name("Aditya", "Bhandari"))
