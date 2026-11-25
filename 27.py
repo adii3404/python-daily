@@ -1,55 +1,44 @@
-class Student:
-    def __init__(self, name, roll, marks):
-        self.name = name
-        self.roll = roll
-        self.marks = marks
+class BankAccount:
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
 
-    def display(self):
-        print("Name:", self.name)
-        print("Roll:", self.roll)
-        print("Marks:", self.marks)
+    def deposit(self, amount):
+        if amount > 0:
+            self.balance = self.balance + amount
+            print("Deposited:", amount, "New Balance:", self.balance)
 
-    def grade(self):
-        if self.marks >= 90:
-            return "A"
-        elif self.marks >= 80:
-            return "B"
-        elif self.marks >= 70:
-            return "C"
+    def withdraw(self, amount):
+        if 0 < amount <= self.balance:
+            self.balance = self.balance - amount
+            print("Withdrew:", amount, "Remaining Balance:", self.balance)
         else:
-            return "D"
+            print("Insufficient funds")
 
-s1 = Student("Aditya", 1, 92)
-s2 = Student("Rohan", 2, 78)
-s3 = Student("Priya", 3, 85)
+    def show_balance(self):
+        print("Account Holder:", self.owner, "| Balance:", self.balance)
 
-s1.display()
-print("Grade:", s1.grade())
-
-print()
-
-s2.display()
-print("Grade:", s2.grade())
+acc = BankAccount("Aditya", 500)
+acc.show_balance()
+acc.deposit(250)
+acc.withdraw(100)
+acc.withdraw(1000)
 
 print()
 
-students = [s1, s2, s3]
-print("All students:")
-for s in students:
-    print(s.name, "->", s.marks, "->", s.grade())
+class Book:
+    total_books = 0
 
-print()
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+        Book.total_books = Book.total_books + 1
 
-class Counter:
-    count = 0
+    def details(self):
+        print(self.title, "by", self.author)
 
-    def __init__(self):
-        Counter.count = Counter.count + 1
-
-    def get_count(self):
-        return Counter.count
-
-c1 = Counter()
-c2 = Counter()
-c3 = Counter()
-print("Objects created:", c3.get_count())
+b1 = Book("Python Crash Course", "Eric Matthes")
+b2 = Book("Automate the Boring Stuff", "Al Sweigart")
+b1.details()
+b2.details()
+print("Total books created:", Book.total_books)
