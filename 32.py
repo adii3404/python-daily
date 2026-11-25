@@ -1,39 +1,31 @@
 import json
 
-data = {
-    "name": "Aditya",
-    "age": 21,
-    "skills": ["Python", "JavaScript", "HTML"],
-    "is_student": True,
-    "address": {
-        "city": "Mumbai",
-        "pincode": 400001
-    }
-}
+users = [
+    {"id": 101, "username": "aditya", "active": True, "score": 92.5},
+    {"id": 102, "username": "rohan", "active": False, "score": 75.0},
+    {"id": 103, "username": "priya", "active": True, "score": 88.0}
+]
 
-json_str = json.dumps(data, indent=4)
-print("JSON String:")
-print(json_str)
+encoded = json.dumps(users, indent=2)
+print("Encoded JSON:")
+print(encoded)
 
 print()
 
-parsed_data = json.loads(json_str)
-print("Name:", parsed_data["name"])
-print("City:", parsed_data["address"]["city"])
-print("First Skill:", parsed_data["skills"][0])
+decoded = json.loads(encoded)
+active_users = [u["username"] for u in decoded if u["active"]]
+print("Active users:", active_users)
 
-print()
+top_scorer = max(decoded, key=lambda u: u["score"])
+print("Top scorer:", top_scorer["username"], "with", top_scorer["score"])
 
-with open("student.json", "w") as f:
-    json.dump(data, f, indent=4)
-print("Data written to student.json")
+with open("users_cache.json", "w") as f:
+    json.dump(decoded, f)
 
-with open("student.json", "r") as f:
-    loaded = json.load(f)
-print("Read from student.json:")
-print("Name:", loaded["name"])
-print("Skills count:", len(loaded["skills"]))
+with open("users_cache.json", "r") as f:
+    recovered = json.load(f)
+print("Cached entries count:", len(recovered))
 
 import os
-os.remove("student.json")
-print("student.json cleaned up")
+os.remove("users_cache.json")
+print("Cache file removed")
