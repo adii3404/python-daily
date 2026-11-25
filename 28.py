@@ -1,62 +1,52 @@
-class Animal:
-    def __init__(self, name, sound):
-        self.name = name
-        self.sound = sound
+class Vehicle:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
 
-    def speak(self):
-        print(self.name, "says", self.sound)
+    def start(self):
+        print(self.brand, self.model, "is starting engine")
 
-class Dog(Animal):
-    def __init__(self, name, breed):
-        super().__init__(name, "Woof")
-        self.breed = breed
+class Car(Vehicle):
+    def __init__(self, brand, model, doors):
+        super().__init__(brand, model)
+        self.doors = doors
 
-    def info(self):
-        print("Name:", self.name)
-        print("Breed:", self.breed)
+    def display(self):
+        print("Car:", self.brand, self.model, "Doors:", self.doors)
 
-class Cat(Animal):
-    def __init__(self, name, color):
-        super().__init__(name, "Meow")
-        self.color = color
+class Bike(Vehicle):
+    def __init__(self, brand, model, cc):
+        super().__init__(brand, model)
+        self.cc = cc
 
-    def info(self):
-        print("Name:", self.name)
-        print("Color:", self.color)
+    def display(self):
+        print("Bike:", self.brand, self.model, "Engine CC:", self.cc)
 
-d = Dog("Bruno", "Labrador")
-d.speak()
-d.info()
+car = Car("Honda", "City", 4)
+bike = Bike("Yamaha", "R15", 155)
 
-print()
-
-c = Cat("Luna", "White")
-c.speak()
-c.info()
+car.start()
+car.display()
 
 print()
 
-class Shape:
-    def area(self):
-        return 0
+bike.start()
+bike.display()
 
-class Rectangle(Shape):
-    def __init__(self, length, breadth):
-        self.length = length
-        self.breadth = breadth
+print()
 
-    def area(self):
-        return self.length * self.breadth
+class Payment:
+    def pay(self, amount):
+        print("Processing base payment of", amount)
 
-class Circle(Shape):
-    def __init__(self, radius):
-        self.radius = radius
+class UpiPayment(Payment):
+    def pay(self, amount):
+        print("Paid", amount, "via UPI ID")
 
-    def area(self):
-        return 3.14 * self.radius * self.radius
+class CardPayment(Payment):
+    def pay(self, amount):
+        print("Paid", amount, "via Credit Card")
 
-r = Rectangle(10, 5)
-print("Rectangle area:", r.area())
-
-c = Circle(7)
-print("Circle area:", c.area())
+methods = [UpiPayment(), CardPayment()]
+for m in methods:
+    m.pay(1200)
